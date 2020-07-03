@@ -1,0 +1,27 @@
+body{
+  /* background: #F0EEEA; */
+  background: rgba(240, 238, 234, .3);
+}
+
+.page-title{
+  display: block !important;
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.form-container{
+  width: 30vw;
+  margin: auto;
+}
+
+@media only screen and (max-width: 1000px) {
+  .form-container {
+    width: 60vw
+  }
+}
+
+
+.ui.teal.button:focus, .ui.teal.buttons .button:focus{
+    background-color: #00b5ad;
+}
