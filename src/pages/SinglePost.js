@@ -1,6 +1,6 @@
-import React, { useContext, useState, useRef } from "react";
-import gql from "graphql-tag";
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import React, { useContext, useState, useRef } from 'react';
+import gql from 'graphql-tag';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import {
   Grid,
   Image,
@@ -9,13 +9,13 @@ import {
   Button,
   Label,
   Form,
-} from "semantic-ui-react";
-import moment from "moment";
+} from 'semantic-ui-react';
+import moment from 'moment';
 
-import { AuthContext } from "../context/auth";
-import LikeButton from "../components/LikeButton";
-import DeleteButton from "../components/DeleteButton";
-import UiPopup from "../util/UiPopup";
+import { AuthContext } from '../context/auth';
+import LikeButton from '../components/LikeButton';
+import DeleteButton from '../components/DeleteButton';
+import UiPopup from '../util/UiPopup';
 
 function SinglePost(props) {
   const postId = props.match.params.postId;
@@ -24,7 +24,7 @@ function SinglePost(props) {
 
   const commentInputRef = useRef(null);
 
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
 
   const { loading, data } = useQuery(FETCH_POST_QUERY, {
     variables: {
@@ -34,7 +34,7 @@ function SinglePost(props) {
 
   const [submitComment] = useMutation(SUBMIT_COMMENT_MUTATION, {
     update() {
-      setComment("");
+      setComment('');
       commentInputRef.current.blur();
     },
     variables: {
@@ -44,7 +44,7 @@ function SinglePost(props) {
   });
 
   function deletePostCallback() {
-    props.history.push("/");
+    props.history.push('/');
   }
 
   let postMarkup;
@@ -73,11 +73,7 @@ function SinglePost(props) {
       <Grid>
         <Grid.Row>
           <Grid.Column width={2}>
-            <Image
-              src={avatar}
-              size="small"
-              float="right"
-            />
+            <Image src={avatar} size="small" float="right" />
           </Grid.Column>
           <Grid.Column width={12}>
             <Card fluid>
@@ -121,7 +117,7 @@ function SinglePost(props) {
                       <button
                         type="submit"
                         className="ui button teal"
-                        disabled={comment.trim() === ""}
+                        disabled={comment.trim() === ''}
                         onClick={submitComment}
                       >
                         Submit

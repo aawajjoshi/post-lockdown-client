@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/react-hooks";
-import { Button, Icon, Confirm } from "semantic-ui-react";
+import React, { useState } from 'react';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+import { Button, Icon, Confirm } from 'semantic-ui-react';
 
-import { FETCH_POSTS_QUERY } from "../util/graphql";
-import UiPopup from "../util/UiPopup";
+import { FETCH_POSTS_QUERY } from '../util/graphql';
+import UiPopup from '../util/UiPopup';
 
 function DeleteButton({ postId, commentId, callback }) {
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -36,7 +36,7 @@ function DeleteButton({ postId, commentId, callback }) {
 
   return (
     <>
-      <UiPopup content={commentId ? "Delete comment" : "Delete post"}>
+      <UiPopup content={commentId ? 'Delete comment' : 'Delete post'}>
         <Button
           as="div"
           color="google plus"

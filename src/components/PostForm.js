@@ -1,14 +1,14 @@
-import React from "react";
-import { Form, Button, TextArea } from "semantic-ui-react";
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/react-hooks";
+import React from 'react';
+import { Form, Button, TextArea } from 'semantic-ui-react';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 
-import { FETCH_POSTS_QUERY } from "../util/graphql";
-import { useForm } from "../util/hooks";
+import { FETCH_POSTS_QUERY } from '../util/graphql';
+import { useForm } from '../util/hooks';
 
 function PostForm() {
   const { onChange, onSubmit, values } = useForm(createCallBack, {
-    body: "",
+    body: '',
   });
 
   const [createPost, { error }] = useMutation(CREATE_POST_MUTATION, {
@@ -24,11 +24,11 @@ function PostForm() {
           getPosts: [result.data.createPost, ...data.getPosts],
         },
       });
-      values.body = "";
+      values.body = '';
     },
-    onError(err){
-       return error;
-    }
+    onError(err) {
+      return error;
+    },
   });
 
   function createCallBack() {
@@ -38,29 +38,31 @@ function PostForm() {
   return (
     <>
       <Form onSubmit={onSubmit}>
-      <h3 style={{fontFamily:`'Open Sans', sans-serif`, color: 'teal'}}>Create a post:</h3>
-      <Form.Field>
-        <TextArea
-          placeholder="Post lockdown, I ..."
-          name="body"
-          onChange={onChange}
-          value={values.body}
-          error={error ? 1 : 0}
-          maxLength="60"
-          style={{resize: 'none', marginBottom: '3.5%'}}
-        />
-        <Button type="submit" color="linkedin">
-          Submit
-        </Button>
-      </Form.Field>
-    </Form>
-    {error && (
-        <div className="ui error message" style={{marginBottom: 20}}>
-            <ul className="list">
+        <h3 style={{ fontFamily: `'Open Sans', sans-serif`, color: 'teal' }}>
+          Create a post:
+        </h3>
+        <Form.Field>
+          <TextArea
+            placeholder="Post lockdown, I ..."
+            name="body"
+            onChange={onChange}
+            value={values.body}
+            error={error ? 1 : 0}
+            maxLength="60"
+            style={{ resize: 'none', marginBottom: '3.5%' }}
+          />
+          <Button type="submit" color="linkedin">
+            Submit
+          </Button>
+        </Form.Field>
+      </Form>
+      {error && (
+        <div className="ui error message" style={{ marginBottom: 20 }}>
+          <ul className="list">
             <li>{error.graphQLErrors[0].message}</li>
-            </ul>
+          </ul>
         </div>
-    )}
+      )}
     </>
   );
 }

@@ -1,27 +1,26 @@
-import React, { useState, useContext } from "react";
-import { Form, Button } from "semantic-ui-react";
-import { useMutation } from "@apollo/react-hooks";
-import gql from "graphql-tag";
+import React, { useState, useContext } from 'react';
+import { Form, Button } from 'semantic-ui-react';
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
-import { AuthContext } from "../context/auth";
-import { useForm } from "../util/hooks";
-
+import { AuthContext } from '../context/auth';
+import { useForm } from '../util/hooks';
 
 function Register(props) {
   const { login } = useContext(AuthContext);
   const [errors, setErrors] = useState({});
 
   const { onChange, onSubmit, values } = useForm(registerUser, {
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
     update(_, { data: { register: userData } }) {
       login(userData);
-      props.history.push("/");
+      props.history.push('/');
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -33,12 +32,23 @@ function Register(props) {
     addUser();
   }
 
-  
-
   return (
     <div className="form-container">
-      <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ""} style={{fontFamily:`'Open Sans', sans-serif`}}>
-        <h1 style={{fontFamily:`'Proza Libre', sans-serif`, fontSize: 'calc(30px + 1vw)', color: 'teal'}}>Register</h1>
+      <Form
+        onSubmit={onSubmit}
+        noValidate
+        className={loading ? 'loading' : ''}
+        style={{ fontFamily: `'Open Sans', sans-serif` }}
+      >
+        <h1
+          style={{
+            fontFamily: `'Proza Libre', sans-serif`,
+            fontSize: 'calc(30px + 1vw)',
+            color: 'teal',
+          }}
+        >
+          Register
+        </h1>
         <Form.Input
           label="Username"
           placeholder="Username.."
@@ -74,7 +84,7 @@ function Register(props) {
           value={values.confirmPassword}
           error={errors.confirmPassword ? true : false}
           onChange={onChange}
-        />      
+        />
 
         <Button type="submit" primary>
           Register
@@ -107,7 +117,6 @@ const REGISTER_USER = gql`
         email: $email
         password: $password
         confirmPassword: $confirmPassword
-        
       }
     ) {
       id

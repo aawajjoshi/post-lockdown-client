@@ -1,24 +1,24 @@
-import React, { useState, useContext } from "react";
-import { Form, Button } from "semantic-ui-react";
-import { useMutation } from "@apollo/react-hooks";
-import gql from "graphql-tag";
+import React, { useState, useContext } from 'react';
+import { Form, Button } from 'semantic-ui-react';
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
-import { AuthContext } from "../context/auth";
-import { useForm } from "../util/hooks";
+import { AuthContext } from '../context/auth';
+import { useForm } from '../util/hooks';
 
 function Login(props) {
   const { login } = useContext(AuthContext);
   const [errors, setErrors] = useState({});
 
   const { onChange, onSubmit, values } = useForm(loginUserCallback, {
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData } }) {
       login(userData);
-      props.history.push("/");
+      props.history.push('/');
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -32,8 +32,21 @@ function Login(props) {
 
   return (
     <div className="form-container">
-      <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ""} style={{fontFamily:`'Open Sans', sans-serif`}}>
-        <h1 style={{fontFamily:`'Proza Libre', sans-serif`, fontSize: 'calc(30px + 1vw)', color: 'teal'}}>Login</h1>
+      <Form
+        onSubmit={onSubmit}
+        noValidate
+        className={loading ? 'loading' : ''}
+        style={{ fontFamily: `'Open Sans', sans-serif` }}
+      >
+        <h1
+          style={{
+            fontFamily: `'Proza Libre', sans-serif`,
+            fontSize: 'calc(30px + 1vw)',
+            color: 'teal',
+          }}
+        >
+          Login
+        </h1>
         <Form.Input
           label="Username"
           placeholder="Username.."
