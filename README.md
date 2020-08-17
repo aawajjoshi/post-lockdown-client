@@ -2,7 +2,7 @@
 
 ## About
 
-Post Lockdown is a place to share your post lockdown aspirations with strangers on the internet. Built using React and Apollo Client, this utilizes the following [GraphQL server](https://github.com/aawajjoshi/post-lockdown-server), and Semantic UI for layout design.
+Post Lockdown is a place to share your post lockdown aspirations with strangers on the internet. Built using React and Apollo Client, it utilizes the following [GraphQL server](https://github.com/aawajjoshi/post-lockdown-server), and Semantic UI for layout design.
 
 **Check it out - https://postlockdown.netlify.app/**
 
